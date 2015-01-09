@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4759AFD8-5440-45AD-B0A5-8B31B5186095</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SHS App</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>84647CB1376CE54718EB0D91D35D5C4156D1F5E3</key>
+		<string>https://github.com/dgleiche/SHS-App.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SHS App.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>84647CB1376CE54718EB0D91D35D5C4156D1F5E3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/dgleiche/SHS-App.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>84647CB1376CE54718EB0D91D35D5C4156D1F5E3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>84647CB1376CE54718EB0D91D35D5C4156D1F5E3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SHS%20MenuApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

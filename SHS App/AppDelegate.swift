@@ -146,10 +146,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
             
             var avg = 0
             
-            for assignment in classArr[row].assignments {
-                
-            }
-            
             var gradePossible: Float = 0
             var gradeGot: Float = 0
             

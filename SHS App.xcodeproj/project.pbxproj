@@ -7,10 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC8B42DE1A2FC4620046214D /* HacScrape.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8B42DD1A2FC4620046214D /* HacScrape.swift */; };
+		FCC62BFD1A3E4D28004841A5 /* ajax-loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = FCC62BFC1A3E4D28004841A5 /* ajax-loader.gif */; };
+		FCC81EDD1A493EA900C6B638 /* info.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC81EDC1A493EA900C6B638 /* info.swift */; };
 		FCD6C97C1A2D7A6F007D5D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6C97B1A2D7A6F007D5D8E /* AppDelegate.swift */; };
 		FCD6C97E1A2D7A6F007D5D8E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCD6C97D1A2D7A6F007D5D8E /* Images.xcassets */; };
 		FCD6C9811A2D7A6F007D5D8E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD6C97F1A2D7A6F007D5D8E /* MainMenu.xib */; };
 		FCD6C98D1A2D7A6F007D5D8E /* SHS_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6C98C1A2D7A6F007D5D8E /* SHS_AppTests.swift */; };
+		FCFCD8EE1A32A0E300413E30 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCD8E91A32A0E300413E30 /* TFHpple.m */; };
+		FCFCD8EF1A32A0E300413E30 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCD8EB1A32A0E300413E30 /* TFHppleElement.m */; };
+		FCFCD8F01A32A0E300413E30 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFCD8ED1A32A0E300413E30 /* XPathQuery.m */; };
+		FCFCD8F21A32E2A400413E30 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFCD8F11A32E2A400413E30 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC8B42DD1A2FC4620046214D /* HacScrape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacScrape.swift; sourceTree = "<group>"; };
+		FCC62BFC1A3E4D28004841A5 /* ajax-loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ajax-loader.gif"; sourceTree = "<group>"; };
+		FCC81EDC1A493EA900C6B638 /* info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = info.swift; sourceTree = "<group>"; };
 		FCD6C9761A2D7A6F007D5D8E /* SHS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD6C97A1A2D7A6F007D5D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCD6C97B1A2D7A6F007D5D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +42,14 @@
 		FCD6C9861A2D7A6F007D5D8E /* SHS AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SHS AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD6C98B1A2D7A6F007D5D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCD6C98C1A2D7A6F007D5D8E /* SHS_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHS_AppTests.swift; sourceTree = "<group>"; };
+		FCFCD8E71A32A0E200413E30 /* SHS App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SHS App-Bridging-Header.h"; sourceTree = "<group>"; };
+		FCFCD8E81A32A0E300413E30 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		FCFCD8E91A32A0E300413E30 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		FCFCD8EA1A32A0E300413E30 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		FCFCD8EB1A32A0E300413E30 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		FCFCD8EC1A32A0E300413E30 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		FCFCD8ED1A32A0E300413E30 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		FCFCD8F11A32E2A400413E30 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCFCD8F21A32E2A400413E30 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,9 +71,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC8B42DF1A30E1A50046214D /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				FCFCD8E81A32A0E300413E30 /* TFHpple.h */,
+				FCFCD8E91A32A0E300413E30 /* TFHpple.m */,
+				FCFCD8EA1A32A0E300413E30 /* TFHppleElement.h */,
+				FCFCD8EB1A32A0E300413E30 /* TFHppleElement.m */,
+				FCFCD8EC1A32A0E300413E30 /* XPathQuery.h */,
+				FCFCD8ED1A32A0E300413E30 /* XPathQuery.m */,
+				FCFCD8E71A32A0E200413E30 /* SHS App-Bridging-Header.h */,
+			);
+			name = hpple;
+			sourceTree = "<group>";
+		};
 		FCD6C96D1A2D7A6F007D5D8E = {
 			isa = PBXGroup;
 			children = (
+				FCFCD8F11A32E2A400413E30 /* libxml2.dylib */,
 				FCD6C9781A2D7A6F007D5D8E /* SHS App */,
 				FCD6C9891A2D7A6F007D5D8E /* SHS AppTests */,
 				FCD6C9771A2D7A6F007D5D8E /* Products */,
@@ -73,7 +107,10 @@
 		FCD6C9781A2D7A6F007D5D8E /* SHS App */ = {
 			isa = PBXGroup;
 			children = (
+				FC8B42DF1A30E1A50046214D /* hpple */,
 				FCD6C97B1A2D7A6F007D5D8E /* AppDelegate.swift */,
+				FC8B42DD1A2FC4620046214D /* HacScrape.swift */,
+				FCC81EDC1A493EA900C6B638 /* info.swift */,
 				FCD6C97D1A2D7A6F007D5D8E /* Images.xcassets */,
 				FCD6C97F1A2D7A6F007D5D8E /* MainMenu.xib */,
 				FCD6C9791A2D7A6F007D5D8E /* Supporting Files */,
@@ -85,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				FCD6C97A1A2D7A6F007D5D8E /* Info.plist */,
+				FCC62BFC1A3E4D28004841A5 /* ajax-loader.gif */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -187,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCD6C97E1A2D7A6F007D5D8E /* Images.xcassets in Resources */,
+				FCC62BFD1A3E4D28004841A5 /* ajax-loader.gif in Resources */,
 				FCD6C9811A2D7A6F007D5D8E /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +244,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCFCD8EF1A32A0E300413E30 /* TFHppleElement.m in Sources */,
+				FC8B42DE1A2FC4620046214D /* HacScrape.swift in Sources */,
+				FCFCD8F01A32A0E300413E30 /* XPathQuery.m in Sources */,
+				FCC81EDD1A493EA900C6B638 /* info.swift in Sources */,
+				FCFCD8EE1A32A0E300413E30 /* TFHpple.m in Sources */,
 				FCD6C97C1A2D7A6F007D5D8E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,22 +363,39 @@
 		FCD6C9911A2D7A6F007D5D8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "SHS App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SHS App/SHS App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		FCD6C9921A2D7A6F007D5D8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "SHS App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SHS App/SHS App-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -393,6 +454,7 @@
 				FCD6C9921A2D7A6F007D5D8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCD6C9931A2D7A6F007D5D8E /* Build configuration list for PBXNativeTarget "SHS AppTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +463,7 @@
 				FCD6C9951A2D7A6F007D5D8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

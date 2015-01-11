@@ -15,11 +15,13 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="SHS_App" customModuleProvider="target">
             <connections>
                 <outlet property="hacTable" destination="H5E-ks-mlh" id="bl4-tU-x77"/>
+                <outlet property="loginButton" destination="lrI-lc-gwQ" id="BiZ-il-AkY"/>
+                <outlet property="loginCancelButton" destination="8Sa-bf-tZN" id="iLm-7Q-Ffr"/>
+                <outlet property="loginWindow" destination="ebJ-DT-uv8" id="uAe-Un-0WK"/>
                 <outlet property="menuView" destination="Wc7-cS-9IG" id="VOe-Lh-daV"/>
-                <outlet property="theButton" destination="yHa-hy-1De" id="n0r-1Y-hU0"/>
-                <outlet property="theLabel" destination="wbJ-6I-6Sa" id="DUZ-Wj-GPc"/>
+                <outlet property="passwordField" destination="OpJ-ZZ-GbM" id="paW-sT-6Bd"/>
+                <outlet property="usernameField" destination="c8C-WV-cS7" id="tMw-01-Nbs"/>
                 <outlet property="webView" destination="I6Z-bj-qzz" id="IIm-pJ-pVs"/>
-                <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="XRd-BS-P26" customClass="AssignmentTableDelegate" customModule="SHS_App" customModuleProvider="target">
@@ -677,45 +679,12 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="SHS App Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="wbJ-6I-6Sa">
-                        <rect key="frame" x="18" y="256" width="444" height="66"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="giO-4X-6Mm">
-                            <font key="font" size="25" name="HelveticaNeue-Thin"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" id="yHa-hy-1De">
-                        <rect key="frame" x="185" y="224" width="111" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="squareTextured" title="Push" bezelStyle="texturedSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Yih-vI-UgM">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonPressed:" target="Voe-Tx-rLC" id="4eU-JH-ADU"/>
-                        </connections>
-                    </button>
-                </subviews>
-            </view>
-            <point key="canvasLocation" x="133" y="288"/>
-        </window>
         <customView id="Wc7-cS-9IG">
-            <rect key="frame" x="0.0" y="0.0" width="880" height="295"/>
+            <rect key="frame" x="0.0" y="-1" width="880" height="429"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <webView id="I6Z-bj-qzz">
-                    <rect key="frame" x="0.0" y="61" width="415" height="234"/>
+                    <rect key="frame" x="0.0" y="195" width="415" height="234"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
                         <nil key="identifier"/>
@@ -725,15 +694,15 @@
                     </connections>
                 </webView>
                 <splitView dividerStyle="thin" vertical="YES" id="Lpc-rR-rXn">
-                    <rect key="frame" x="0.0" y="0.0" width="880" height="295"/>
+                    <rect key="frame" x="0.0" y="0.0" width="880" height="429"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <customView id="IlS-XI-NXm">
-                            <rect key="frame" x="0.0" y="0.0" width="270.5" height="295"/>
+                            <rect key="frame" x="0.0" y="0.0" width="271" height="429"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="34" horizontalPageScroll="10" verticalLineScroll="34" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="Gza-Fk-rYI">
-                                    <rect key="frame" x="0.0" y="0.0" width="302.5" height="295"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="302.5" height="429"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="eud-1y-BaI">
                                         <rect key="frame" x="1" y="0.0" width="238" height="134"/>
@@ -808,18 +777,17 @@
                             </subviews>
                         </customView>
                         <customView id="B8q-on-2dZ">
-                            <rect key="frame" x="271.5" y="0.0" width="608.5" height="295"/>
+                            <rect key="frame" x="272" y="0.0" width="608" height="429"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <scrollView borderType="none" horizontalLineScroll="49" horizontalPageScroll="10" verticalLineScroll="49" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="qED-m4-fRC">
-                                    <rect key="frame" x="0.0" y="0.0" width="588.5" height="295"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="588.5" height="429"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="wrZ-Z5-NdQ">
                                         <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="47" rowSizeStyle="automatic" viewBased="YES" id="oxP-8F-wEL">
-                                                <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -895,7 +863,7 @@
                                         <color key="backgroundColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
                                     </clipView>
                                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="9fQ-RK-Nsp">
-                                        <rect key="frame" x="1" y="117.99995332956314" width="237.99989700317383" height="16"/>
+                                        <rect key="frame" x="1" y="117.99995332956314" width="238" height="16"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="ZSu-Yr-EGW">
@@ -912,7 +880,87 @@
                     </holdingPriorities>
                 </splitView>
             </subviews>
-            <point key="canvasLocation" x="158" y="-110.5"/>
+            <point key="canvasLocation" x="158" y="-43.5"/>
         </customView>
+        <window title="Login to HAC" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="ebJ-DT-uv8" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="139" y="81" width="282" height="135"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="xgH-bR-6tO">
+                <rect key="frame" x="0.0" y="0.0" width="282" height="135"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <secureTextField verticalHuggingPriority="750" id="OpJ-ZZ-GbM">
+                        <rect key="frame" x="166" y="56" width="96" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="a59-ll-iJP">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </secureTextFieldCell>
+                    </secureTextField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="vTW-xx-nTw">
+                        <rect key="frame" x="182" y="86" width="65" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="rPZ-pf-xYS">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" id="lrI-lc-gwQ">
+                        <rect key="frame" x="190" y="13" width="75" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2zl-fN-2xH">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="loginButtonClicked:" target="Voe-Tx-rLC" id="dld-3O-yPn"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="YDY-9h-U5t">
+                        <rect key="frame" x="35" y="86" width="67" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Username" id="7fK-Ff-nvN">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="c8C-WV-cS7">
+                        <rect key="frame" x="20" y="56" width="96" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Hz5-pJ-pbM">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" id="8Sa-bf-tZN">
+                        <rect key="frame" x="100" y="13" width="83" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8DX-yM-FuC">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="closeButtonClicked:" target="Voe-Tx-rLC" id="7jz-Ln-GoD"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="8" y="-423.5"/>
+        </window>
     </objects>
 </document>

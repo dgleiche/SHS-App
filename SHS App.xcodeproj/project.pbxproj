@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FC8B42DE1A2FC4620046214D /* HacScrape.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8B42DD1A2FC4620046214D /* HacScrape.swift */; };
 		FCC62BFD1A3E4D28004841A5 /* ajax-loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = FCC62BFC1A3E4D28004841A5 /* ajax-loader.gif */; };
-		FCC81EDD1A493EA900C6B638 /* info.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC81EDC1A493EA900C6B638 /* info.swift */; };
 		FCD6C97C1A2D7A6F007D5D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD6C97B1A2D7A6F007D5D8E /* AppDelegate.swift */; };
 		FCD6C97E1A2D7A6F007D5D8E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCD6C97D1A2D7A6F007D5D8E /* Images.xcassets */; };
 		FCD6C9811A2D7A6F007D5D8E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD6C97F1A2D7A6F007D5D8E /* MainMenu.xib */; };
@@ -33,7 +32,6 @@
 /* Begin PBXFileReference section */
 		FC8B42DD1A2FC4620046214D /* HacScrape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacScrape.swift; sourceTree = "<group>"; };
 		FCC62BFC1A3E4D28004841A5 /* ajax-loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ajax-loader.gif"; sourceTree = "<group>"; };
-		FCC81EDC1A493EA900C6B638 /* info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = info.swift; sourceTree = "<group>"; };
 		FCD6C9761A2D7A6F007D5D8E /* SHS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SHS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD6C97A1A2D7A6F007D5D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCD6C97B1A2D7A6F007D5D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				FC8B42DF1A30E1A50046214D /* hpple */,
 				FCD6C97B1A2D7A6F007D5D8E /* AppDelegate.swift */,
 				FC8B42DD1A2FC4620046214D /* HacScrape.swift */,
-				FCC81EDC1A493EA900C6B638 /* info.swift */,
 				FCD6C97D1A2D7A6F007D5D8E /* Images.xcassets */,
 				FCD6C97F1A2D7A6F007D5D8E /* MainMenu.xib */,
 				FCD6C9791A2D7A6F007D5D8E /* Supporting Files */,
@@ -247,7 +244,6 @@
 				FCFCD8EF1A32A0E300413E30 /* TFHppleElement.m in Sources */,
 				FC8B42DE1A2FC4620046214D /* HacScrape.swift in Sources */,
 				FCFCD8F01A32A0E300413E30 /* XPathQuery.m in Sources */,
-				FCC81EDD1A493EA900C6B638 /* info.swift in Sources */,
 				FCFCD8EE1A32A0E300413E30 /* TFHpple.m in Sources */,
 				FCD6C97C1A2D7A6F007D5D8E /* AppDelegate.swift in Sources */,
 			);

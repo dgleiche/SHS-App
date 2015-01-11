@@ -19,9 +19,14 @@ extension String {
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTableViewDataSource, NSMenuDelegate {
     
-    @IBOutlet weak var window: NSWindow!
-    @IBOutlet weak var theLabel: NSTextField!
-    @IBOutlet weak var theButton: NSButton!
+    @IBOutlet weak var loginWindow: NSPanel!
+    
+    @IBOutlet weak var usernameField: NSTextField!
+    @IBOutlet weak var passwordField: NSSecureTextField!
+    
+    @IBOutlet weak var loginButton: NSButton!
+    
+    @IBOutlet weak var loginCancelButton: NSButton!
     
     @IBOutlet weak var hacTable: NSTableView!
     
@@ -29,13 +34,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
     
     @IBOutlet weak var menuView: NSView!
     
-    var buttonPresses = 0
-
     let statusBar = NSStatusBar.systemStatusBar()
     var statusBarItem : NSStatusItem = NSStatusItem()
     var menu : NSMenu = NSMenu()
-    var menuItemPref : NSMenuItem = NSMenuItem()
+    var menuItemLogin : NSMenuItem = NSMenuItem()
     var menuItemMain : NSMenuItem = NSMenuItem()
+    var menuItemRefresh : NSMenuItem = NSMenuItem()
     
     //Global states for cur url
     var hacSigninURL = true
@@ -45,47 +49,82 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
     var classArr: Array<ClassInfo> = []
     var populateTable = false
     
+    var loadingTableData = false
+    
+    var loginTest = false
+    
+    var loggedIn = false
+    
+    //Vars used in notifications
+    var user = ""
+    var pass = ""
+    
     override func awakeFromNib() {
-        theLabel.stringValue = "You've pressed the button \n \(buttonPresses) times"
         
         //Add statusBarItem
         statusBarItem = statusBar.statusItemWithLength(-1)
         statusBarItem.menu = menu
         statusBarItem.title = "SHS App"
         
+        //Add the refresh table menu item
+        menuItemRefresh.title = "Refresh"
+        menu.addItem(menuItemRefresh)
+        
         //Add the menu view
         menuItemMain.view = menuView
         menu.addItem(menuItemMain)
         
         //Add pref item to menu
-        menuItemPref.title = "Preferences"
-        menuItemPref.action = Selector("setWindowVisible:")
-        menuItemPref.keyEquivalent = ""
-        menu.addItem(menuItemPref)
+        menuItemLogin.title = "Log In"
+        menuItemLogin.action = Selector("loginClicked:")
+        menuItemLogin.keyEquivalent = ""
+        menu.addItem(menuItemLogin)
         
         webView.hidden = true
         
         menu.delegate = self
         
-        login(u, pass: p)
+        createNotificationListeners()
+        
+        //Prompt for login if necessary
+        NSApp.runModalForWindow(self.loginWindow!)
+        
     }
     
-    func menuWillOpen(menu: NSMenu) {
-        NSApp.activateIgnoringOtherApps(true)
+    func resetVars() {
+        classArr = []
+        populateTable = false
+        
+        loadingTableData = false
+        
+        loginTest = false
+
+        user = ""
+        pass = ""
+        
+        menuItemLogin.title = "Log In"
+        menuItemLogin.action = Selector("loginClicked:")
+        
+        menuItemRefresh.action = nil
+        
+        //Reload the table to clear it out
+        self.hacTable.reloadData()
+        
+        //Reload the other table too
+        AssignmentTableDelegate.classInfo = ClassInfo(className: "nil", assignments:[], classInfo:nil)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("updateTable", object: nil)
     }
     
-    func login(user: String, pass: String) {
-        let url = NSURL(string: "https://hac.westport.k12.ct.us/HomeAccess/")
+    func createNotificationListeners() {
+        //I cant create them in functions as they'd be created as many times as i call the function
         
-        let request = NSURLRequest(URL: url!)
-        
-        webView.mainFrame.loadRequest(request)
-        
+        /* Notification for populating table */
         NSNotificationCenter.defaultCenter().addObserverForName("webview_finished", object: nil, queue: nil) { note in
             
             //Set the username and password
-            var js = "document.getElementById('LogOnDetails_UserName').value='\(user)';"
-            js += "document.getElementById('LogOnDetails_Password').value='\(pass)';"
+            var js = "document.getElementById('LogOnDetails_UserName').value='\(self.user)';"
+            js += "document.getElementById('LogOnDetails_Password').value='\(self.pass)';"
             
             //Submit the form
             js += "document.getElementsByTagName('button')[0].click();"
@@ -93,34 +132,159 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
             let response = self.webView.stringByEvaluatingJavaScriptFromString(js)
         }
         
+        NSNotificationCenter.defaultCenter().addObserverForName("redirectToClasses", object: nil, queue: nil) { note in
+            //Determine whether or not we're testing or getting data
+            self.classesScrape = !self.loginTest
+            
+            //Redirect to classwork
+            let js = "window.location='https://hac.westport.k12.ct.us/HomeAccess/Content/Student/Assignments.aspx'"
+            self.webView.stringByEvaluatingJavaScriptFromString(js)
+            
+        }
+        
         NSNotificationCenter.defaultCenter().addObserverForName("populate_table", object: nil, queue: nil) { note in
+            //Populate the table
             self.populateTable = true
             self.hacTable.reloadData()
+            
+            //Create the logout button
+            self.menuItemLogin.title = "Log Out"
+            self.menuItemLogin.action = Selector("logoutClicked:")
         }
+        
+        /* Notification for handling whether logged in */
+        NSNotificationCenter.defaultCenter().addObserverForName("loggedIn?", object: nil, queue: nil) { note in
+            
+            //Re-enable everything for next time
+            self.loginButton.enabled = true
+            self.loginCancelButton.enabled = true
+            
+            self.usernameField.enabled = true
+            self.passwordField.enabled = true
+            
+            let loggedInObject: AnyObject = note.userInfo!["loggedIn"]!
+            
+            let isLoggedIn = (loggedInObject as NSObject == 0) ? false : true
+            
+            if isLoggedIn {
+                //User name exists; continue with login
+                
+                self.loggedIn = true
+                
+                self.menuItemRefresh.action = Selector("refresh:")
+                
+                self.login(self.user, pass: self.pass)
+                
+                self.loginWindow!.orderOut(self)
+                
+                NSApp.stopModal()
+            }
+        }
+        
+    }
+    
+    func menuWillOpen(menu: NSMenu) {
+        //Menubar item pressed; Make menubar prominent
+        NSApp.activateIgnoringOtherApps(true)
+    }
+    
+    func refresh(sender: AnyObject) {
+        //First empty the table and put it in a loading state
+        classArr = []
+        
+        //Reload the table to clear it out
+        self.hacTable.reloadData()
+        
+        //Reload the other table too
+        AssignmentTableDelegate.classInfo = ClassInfo(className: "nil", assignments:[], classInfo:nil)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("updateTable", object: nil)
+        
+        //A simple login should reload everything
+        login(self.user, pass: self.pass)
+    }
+    
+    func login(user: String, pass: String, test: Bool = false) {
+        //Set up login test if necessary
+        self.loginTest = test
+        
+        if !test {
+            //Set table to loadingTable state
+            self.loadingTableData = true
+            
+            self.populateTable = false
+            
+            self.hacTable.reloadData()
+        }
+        
+        //Set up vars for notifications
+        self.user = user
+        self.pass = pass
+        
+        self.hacSigninURL = true
+        self.classesRedirectURL = false
+        self.classesScrape = false
+        
+        //Load the login page
+        let url = NSURL(string: "https://hac.westport.k12.ct.us/HomeAccess/")
+        
+        let request = NSURLRequest(URL: url!)
+        
+        webView.mainFrame.loadRequest(request)
+        
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        //Hide window initially
-        self.window!.orderOut(self)
+        self.loginWindow!.orderOut(self)
     }
     
-    @IBAction func buttonPressed(sender: AnyObject) {
-        buttonPresses += 1
-        theLabel.stringValue = "You've pressed the button \n \(buttonPresses) times!"
-        menuItemPref.title = "Clicked \(buttonPresses)"
-        statusBarItem.title = "Presses \(buttonPresses)"
+    
+    func loginClicked(sender: AnyObject) {
+        NSApp.runModalForWindow(self.loginWindow!)
     }
     
-    func setWindowVisible(sender: AnyObject) {
-        //Make pref window visible
-        self.window!.orderFront(self)
+    func logoutClicked(sender: AnyObject) {
+        self.hacSigninURL = false
+        self.classesRedirectURL = false
+        self.classesScrape = false
+        self.loginTest = false
         
-        //Make prominent window
-        self.window!.level = 1
+        let url = NSURL(string: "https://hac.westport.k12.ct.us/HomeAccess/Account/LogOff")
+        
+        let request = NSURLRequest(URL: url!)
+        
+        webView.mainFrame.loadRequest(request)
+        
+        self.resetVars()
     }
-
-    func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
+    
+    @IBAction func loginButtonClicked(sender: AnyObject) {
+        
+        let username = usernameField.stringValue
+        let password = passwordField.stringValue
+        
+        //First ensure there is a value inputted
+        if username != "" && password != "" {
+            
+            //Validate login
+            login(username, pass: password, test: true)
+            
+            usernameField.enabled = false
+            passwordField.enabled = false
+            
+            loginButton.enabled = false
+            loginCancelButton.enabled = false
+            
+            //Notification will handle the rest
+        }
+        
+    }
+    
+    @IBAction func closeButtonClicked(sender: AnyObject) {
+        
+        self.loginWindow!.orderOut(self)
+        
+        NSApp.stopModal()
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
@@ -134,7 +298,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
     
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-
+        
         var cell: NSTableCellView = tableView.makeViewWithIdentifier("HacColumn", owner: tableView.self) as NSTableCellView
         
         let gradeLabel: NSTextField? = cell.viewWithTag(1500)? as? NSTextField
@@ -161,7 +325,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
             
             if (gradePossible > 0) {
                 let grade = round(10000 * (gradeGot/gradePossible)) / 100
-            
+                
                 gradeLabel?.stringValue = "\(grade)%"
             } else {
                 gradeLabel?.stringValue = "No Grade Avail."
@@ -170,7 +334,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
             return cell
         }
         
-        classLabel?.stringValue = "Loading...."
+        else if loadingTableData {
+            classLabel?.stringValue = "Loading..."
+            
+            gradeLabel?.stringValue = ""
+            
+            return cell
+        }
+        
+        classLabel?.stringValue = "Please Log In"
         
         gradeLabel?.stringValue = ""
         
@@ -192,19 +364,46 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
     
     override func webView(sender: WebView!, didFinishLoadForFrame frame: WebFrame!) {
         if hacSigninURL {
-            hacSigninURL = false
-            classesRedirectURL = true
             
-            //Webview finished loading, send notification
-            NSNotificationCenter.defaultCenter().postNotificationName("webview_finished", object: self)
-        } else {
-            if classesRedirectURL {
-                classesRedirectURL = false
-                classesScrape = true
+            hacSigninURL = false
+            
+            let js = "window.location.pathname"
+            
+            let location = self.webView.stringByEvaluatingJavaScriptFromString(js)
+            print(location)
+            let loggedIn = (location == "/HomeAccess/Home/WeekView")
+            
+            if (loggedIn) {
+                //Already logged in; continue with login
+                classesRedirectURL = true
+            }
                 
-                //Redirect to classwork
-                let js = "window.location='https://hac.westport.k12.ct.us/HomeAccess/Content/Student/Assignments.aspx'"
-                self.webView.stringByEvaluatingJavaScriptFromString(js)
+            else {
+                classesRedirectURL = true
+                
+                //Webview finished loading, send notification
+                NSNotificationCenter.defaultCenter().postNotificationName("webview_finished", object: self)
+                
+                //We dont want to run any more of this code yet, so return
+                return
+            }
+            
+        }
+        if classesRedirectURL {
+            classesRedirectURL = false
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("redirectToClasses", object: self)
+        }
+            
+        else {
+            if loginTest && !classesScrape {
+                let js = "window.location.pathname"
+                
+                let location = self.webView.stringByEvaluatingJavaScriptFromString(js)
+                
+                let loggedIn = (location == "/HomeAccess/Content/Student/Assignments.aspx")
+                
+                NSNotificationCenter.defaultCenter().postNotificationName("loggedIn?", object: self, userInfo: ["loggedIn": loggedIn])
             }
             
             if classesScrape {
@@ -251,7 +450,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
                     var assignmentInfoArr: Array<Dictionary<String, (category: String, score: Float, totalPoints: Float)>> = []
                     
                     var classInfoDict: Dictionary<String, (score: Float, totalPoints: Float, weight: Float, categoryPoints: Float)> = [:]
-
+                    
                     for assignmentNode in assignmentNodes {
                         let xpathTableNodes = "//td"
                         let tdNodes = assignmentNode.searchWithXPathQuery(xpathTableNodes)
@@ -315,19 +514,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
                     let classInfo: ClassInfo = ClassInfo(className: name, assignments: assignmentInfoArr, classInfo: classInfoDict)
                     classArr.append(classInfo)
                 }
-
+                
                 if classArr.count > 0 {
                     //Send notification to populate table
                     NSNotificationCenter.defaultCenter().postNotificationName("populate_table", object: self)
                 }
                 
             } //End Classes scrape
-            
-            
-        } //End WebView Sender
+        }
         
-    }
-
-
+        
+    } //End WebView Sender
+    
+    
+    
+    
 }
 

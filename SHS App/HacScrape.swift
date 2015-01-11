@@ -45,7 +45,7 @@ class AssignmentTableDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return SubStruct.classInfo.assignments.count
+        return (SubStruct.classInfo.assignments.count > 0) ? (SubStruct.classInfo.assignments.count + SubStruct.classInfo.classInfo!.count + 1) : 0
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -62,7 +62,90 @@ class AssignmentTableDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
         
         if updateTable {
             
-            let assignment = SubStruct.classInfo.assignments[row]
+            //Row is for total points
+            if row == 0 {
+                assignmentLabel?.stringValue = "Overall Score"
+                
+                var gradePossible: Float = 0
+                var gradeGot: Float = 0
+                
+                for (category, info) in SubStruct.classInfo.classInfo! {
+                    if info.weight > 0 {
+                        gradePossible += info.weight
+                        gradeGot += info.categoryPoints
+                    } else {
+                        gradePossible += info.totalPoints
+                        gradeGot += info.score
+                    }
+                }
+                
+                categoryLabel?.stringValue = "\(gradeGot)/\(gradePossible)"
+                
+                scoreLabel?.stringValue = ""
+                
+                let grade = round(10000 * (gradeGot/gradePossible)) / 100
+                
+                percentLabel?.stringValue = "\(grade)%"
+                
+                let categoryInfoLabelColor = NSColor.blueColor()
+                
+                scoreLabel?.textColor = categoryInfoLabelColor
+                percentLabel?.textColor = categoryInfoLabelColor
+                assignmentLabel?.textColor = categoryInfoLabelColor
+                categoryLabel?.textColor = categoryInfoLabelColor
+                
+                return cell
+            }
+            
+            //Row is a category
+            if row < SubStruct.classInfo.classInfo!.count + 1 {
+                
+                let categories = SubStruct.classInfo.classInfo!
+                
+                var i = 0
+                for (category, info) in categories {
+                    if i == row-1 {
+                        assignmentLabel?.stringValue = category
+                        
+                        let score = info.score
+                        let total = info.totalPoints
+                        
+                        categoryLabel?.stringValue = "\(score)/\(total)"
+                        
+                        let weight = info.weight
+                        let catPoints = info.categoryPoints
+                        
+                        if weight > 0 {
+                            scoreLabel?.stringValue = "* \(weight)"
+                            
+                            percentLabel?.stringValue = "\(catPoints)"
+                            
+                        } else {
+                            scoreLabel?.stringValue = ""
+                            
+                            let percent = round(10000 * (score/total)) / 100
+                            
+                            percentLabel?.stringValue = "\(percent)%"
+                        }
+                        
+                        let categoryInfoLabelColor = NSColor.redColor()
+                        
+                        scoreLabel?.textColor = categoryInfoLabelColor
+                        percentLabel?.textColor = categoryInfoLabelColor
+                        assignmentLabel?.textColor = categoryInfoLabelColor
+                        categoryLabel?.textColor = categoryInfoLabelColor
+                        
+                        return cell
+                    }
+                    i++
+                }
+            }
+            
+            //Row is for assignments
+            
+            let assignmentIndex = row - SubStruct.classInfo.classInfo!.count - 1
+            
+            let assignment = SubStruct.classInfo.assignments[assignmentIndex]
             
             //No worries assignment only will have 1 member
             for (assignment, info) in assignment {
@@ -78,6 +161,13 @@ class AssignmentTableDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
                 let percent = round(10000 * (score/totalPoints)) / 100
                 
                 percentLabel?.stringValue = "\(percent)%"
+                
+                let categoryInfoLabelColor = NSColor.blackColor()
+                
+                scoreLabel?.textColor = categoryInfoLabelColor
+                percentLabel?.textColor = categoryInfoLabelColor
+                assignmentLabel?.textColor = categoryInfoLabelColor
+                categoryLabel?.textColor = categoryInfoLabelColor
             }
         }
         

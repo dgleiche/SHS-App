@@ -41,6 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
     var menuItemMain : NSMenuItem = NSMenuItem()
     var menuItemRefresh : NSMenuItem = NSMenuItem()
     
+    var menuItemQuit : NSMenuItem = NSMenuItem()
+    
     //Global states for cur url
     var hacSigninURL = true
     var classesRedirectURL = false
@@ -80,6 +82,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
         menuItemLogin.keyEquivalent = ""
         menu.addItem(menuItemLogin)
         
+        menuItemQuit.title = "Quit"
+        menuItemQuit.action = Selector("quit:")
+        menu.addItem(menuItemQuit)
+        
         webView.hidden = true
         
         menu.delegate = self
@@ -89,6 +95,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
         //Prompt for login if necessary
         NSApp.runModalForWindow(self.loginWindow!)
         
+    }
+    
+    func quit(sender: AnyObject) {
+        NSApplication.sharedApplication().terminate(self)
     }
     
     func resetVars() {

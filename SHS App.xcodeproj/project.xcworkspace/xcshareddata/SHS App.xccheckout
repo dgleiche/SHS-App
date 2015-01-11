@@ -12,6 +12,8 @@
 	<dict>
 		<key>84647CB1376CE54718EB0D91D35D5C4156D1F5E3</key>
 		<string>https://github.com/dgleiche/SHS-App.git</string>
+		<key>EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402</key>
+		<string>https://github.com/sparkle-project/Sparkle</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SHS App.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>84647CB1376CE54718EB0D91D35D5C4156D1F5E3</key>
 		<string>../..</string>
+		<key>EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402</key>
+		<string>../../Sparkle/</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/dgleiche/SHS-App.git</string>
@@ -35,6 +39,14 @@
 			<string>84647CB1376CE54718EB0D91D35D5C4156D1F5E3</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SHS%20MenuApp</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Sparkle</string>
 		</dict>
 	</array>
 </dict>

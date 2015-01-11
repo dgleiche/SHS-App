@@ -97,6 +97,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
         
     }
     
+    
     func quit(sender: AnyObject) {
         NSApplication.sharedApplication().terminate(self)
     }

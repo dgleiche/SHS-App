@@ -30,6 +30,7 @@
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="YrP-jV-fs4" customClass="SUUpdater"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="SHS App" id="1Xt-HY-uBw">

@@ -18,6 +18,7 @@
                 <outlet property="loginButton" destination="lrI-lc-gwQ" id="BiZ-il-AkY"/>
                 <outlet property="loginCancelButton" destination="8Sa-bf-tZN" id="iLm-7Q-Ffr"/>
                 <outlet property="loginWindow" destination="ebJ-DT-uv8" id="uAe-Un-0WK"/>
+                <outlet property="menuItemUpdate" destination="ZL5-Ef-Fbh" id="Scp-Fh-V9F"/>
                 <outlet property="menuView" destination="Wc7-cS-9IG" id="VOe-Lh-daV"/>
                 <outlet property="passwordField" destination="OpJ-ZZ-GbM" id="paW-sT-6Bd"/>
                 <outlet property="usernameField" destination="c8C-WV-cS7" id="tMw-01-Nbs"/>
@@ -885,8 +886,8 @@
         </customView>
         <window title="Login to HAC" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="ebJ-DT-uv8" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="139" y="81" width="282" height="135"/>
+            <windowPositionMask key="initialPositionMask" rightStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="782" y="653" width="282" height="135"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="xgH-bR-6tO">
                 <rect key="frame" x="0.0" y="0.0" width="282" height="135"/>
@@ -963,5 +964,11 @@ Gw
             </view>
             <point key="canvasLocation" x="8" y="-423.5"/>
         </window>
+        <menuItem title="Check for Updates..." id="ZL5-Ef-Fbh">
+            <modifierMask key="keyEquivalentModifierMask"/>
+            <connections>
+                <action selector="checkForUpdates:" target="N0z-Dl-P27" id="6cT-jX-L6H"/>
+            </connections>
+        </menuItem>
     </objects>
 </document>

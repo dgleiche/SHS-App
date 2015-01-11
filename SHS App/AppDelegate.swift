@@ -41,6 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
     var menuItemMain : NSMenuItem = NSMenuItem()
     var menuItemRefresh : NSMenuItem = NSMenuItem()
     
+    @IBOutlet weak var menuItemUpdate: NSMenuItem!
+    
     var menuItemQuit : NSMenuItem = NSMenuItem()
     
     //Global states for cur url
@@ -82,6 +84,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
         menuItemLogin.keyEquivalent = ""
         menu.addItem(menuItemLogin)
         
+        menu.addItem(menuItemUpdate)
+        
         menuItemQuit.title = "Quit"
         menuItemQuit.action = Selector("quit:")
         menu.addItem(menuItemQuit)
@@ -92,11 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
         
         createNotificationListeners()
         
-        //Prompt for login if necessary
-        NSApp.runModalForWindow(self.loginWindow!)
-        
     }
-    
     
     func quit(sender: AnyObject) {
         NSApplication.sharedApplication().terminate(self)
@@ -246,7 +246,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDelegate, NSTable
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        self.loginWindow!.orderOut(self)
+        //Prompt for login if necessary
+        self.loginWindow!.makeKeyAndOrderFront(self)
+        
     }
     
     

@@ -22,7 +22,7 @@
 		<key>84647CB1376CE54718EB0D91D35D5C4156D1F5E3</key>
 		<string>../..</string>
 		<key>EF1CF5E1F342919DE309B5C9DAEDDCF1D12D0402</key>
-		<string>../../Sparkle/</string>
+		<string>../../Sparkle</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/dgleiche/SHS-App.git</string>

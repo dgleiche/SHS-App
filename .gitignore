@@ -17,6 +17,8 @@ DerivedData
 *.ipa
 *.xcuserstate
 SHS-App/info.swift
+dsa_priv.pem
+dsa_pub.pem
 
 # CocoaPods
 #

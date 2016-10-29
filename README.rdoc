@@ -1,0 +1,3 @@
+== SHS Grades Viewer
+
+This app sits on the menubar (status bar) of the mac and allows you to quickly view your grades at Staples High School. Essentially functions as a screen scraper to Home Access Center.
